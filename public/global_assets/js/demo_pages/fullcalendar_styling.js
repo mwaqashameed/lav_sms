@@ -31,58 +31,60 @@ var FullCalendarStyling = function() {
         // Default events
         var events = [
             {
-                title: 'All Day Event',
-                start: '2014-11-01'
+                id: 66665,
+                title: 'Crismis',
+                start: '2023-12-25',
+                end: '2023-12-25'
             },
             {
                 title: 'Long Event',
-                start: '2014-11-07',
-                end: '2014-11-10'
+                start: '2023-11-07',
+                end: '2023-11-10'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-09T16:00:00'
+                start: '2023-11-09T16:00:00'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-16T16:00:00'
+                start: '2023-11-16T16:00:00'
             },
             {
                 title: 'Conference',
-                start: '2014-11-11',
-                end: '2014-11-13'
+                start: '2023-11-11',
+                end: '2023-11-13'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-12T10:30:00',
-                end: '2014-11-12T12:30:00'
+                start: '2023-11-12T10:30:00',
+                end: '2023-11-12T12:30:00'
             },
             {
                 title: 'Lunch',
-                start: '2014-11-12T12:00:00'
+                start: '2023-11-12T12:00:00'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-12T14:30:00'
+                start: '2023-11-12T14:30:00'
             },
             {
                 title: 'Happy Hour',
-                start: '2014-11-12T17:30:00'
+                start: '2023-11-12T17:30:00'
             },
             {
                 title: 'Dinner',
-                start: '2014-11-12T20:00:00'
+                start: '2023-11-12T20:00:00'
             },
             {
                 title: 'Birthday Party',
-                start: '2014-11-13T07:00:00'
+                start: '2023-11-13T07:00:00'
             },
             {
                 title: 'Click for Google',
                 url: 'http://google.com/',
-                start: '2014-11-28'
+                start: '2023-11-28'
             }
         ];
 
@@ -90,68 +92,73 @@ var FullCalendarStyling = function() {
         var eventColors = [
             {
                 title: 'All Day Event',
-                start: '2014-11-01',
+                start: '2023-11-01',
+                color: '#EF5350'
+            },
+            {
+                title: 'All Day Event',
+                start: '2023-12-25',
                 color: '#EF5350'
             },
             {
                 title: 'Long Event',
-                start: '2014-11-07',
-                end: '2014-11-10',
+                start: '2023-11-07',
+                end: '2023-11-10',
                 color: '#26A69A'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-09T16:00:00',
+                start: '2023-11-09T16:00:00',
                 color: '#26A69A'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-16T16:00:00',
+                start: '2023-11-16T16:00:00',
                 color: '#5C6BC0'
             },
             {
                 title: 'Conference',
-                start: '2014-11-11',
-                end: '2014-11-13',
+                start: '2023-11-11',
+                end: '2023-11-13',
                 color: '#546E7A'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-12T10:30:00',
-                end: '2014-11-12T12:30:00',
+                start: '2023-11-12T10:30:00',
+                end: '2023-11-12T12:30:00',
                 color: '#546E7A'
             },
             {
                 title: 'Lunch',
-                start: '2014-11-12T12:00:00',
+                start: '2023-11-12T12:00:00',
                 color: '#546E7A'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-12T14:30:00',
+                start: '2023-11-12T14:30:00',
                 color: '#546E7A'
             },
             {
                 title: 'Happy Hour',
-                start: '2014-11-12T17:30:00',
+                start: '2023-11-12T17:30:00',
                 color: '#546E7A'
             },
             {
                 title: 'Dinner',
-                start: '2014-11-12T20:00:00',
+                start: '2023-11-12T20:00:00',
                 color: '#546E7A'
             },
             {
                 title: 'Birthday Party',
-                start: '2014-11-13T07:00:00',
+                start: '2023-11-13T07:00:00',
                 color: '#546E7A'
             },
             {
                 title: 'Click for Google',
                 url: 'http://google.com/',
-                start: '2014-11-28',
+                start: '2023-11-28',
                 color: '#FF7043'
             }
         ];
@@ -160,59 +167,66 @@ var FullCalendarStyling = function() {
         var eventBackgroundColors = [
             {
                 title: 'All Day Event',
-                start: '2014-11-01'
+                start: '2023-11-01'
             },
             {
                 title: 'Long Event',
-                start: '2014-11-07',
-                end: '2014-11-10',
+                start: '2023-11-07',
+                end: '2023-11-10',
+                color: '#DCEDC8',
+                rendering: 'background'
+            },
+            {
+                title: 'Long Event',
+                start: '2023-12-25',
+                end: '2023-12-25',
                 color: '#DCEDC8',
                 rendering: 'background'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-06T16:00:00'
+                start: '2023-11-06T16:00:00'
             },
             {
                 id: 999,
                 title: 'Repeating Event',
-                start: '2014-11-16T16:00:00'
+                start: '2023-11-16T16:00:00'
             },
             {
                 title: 'Conference',
-                start: '2014-11-11',
-                end: '2014-11-13'
+                start: '2023-11-11',
+                end: '2023-11-13'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-12T10:30:00',
-                end: '2014-11-12T12:30:00'
+                start: '2023-11-12T10:30:00',
+                end: '2023-11-12T12:30:00'
             },
             {
                 title: 'Lunch',
-                start: '2014-11-12T12:00:00'
+                start: '2023-11-12T12:00:00'
             },
             {
                 title: 'Happy Hour',
-                start: '2014-11-12T17:30:00'
+                start: '2023-11-12T17:30:00'
             },
             {
                 title: 'Dinner',
-                start: '2014-11-24T20:00:00'
+                start: '2023-11-24T20:00:00'
             },
             {
                 title: 'Meeting',
-                start: '2014-11-03T10:00:00'
+                start: '2023-11-03T10:00:00'
             },
             {
                 title: 'Birthday Party',
-                start: '2014-11-13T07:00:00'
+                start: '2023-11-13T07:00:00'
             },
             {
                 title: 'Vacation',
-                start: '2014-11-27',
-                end: '2014-11-30',
+                start: '2023-11-27',
+                end: '2023-11-30',
                 color: '#FFCCBC',
                 rendering: 'background'
             }
@@ -229,7 +243,7 @@ var FullCalendarStyling = function() {
                 center: 'title',
                 right: 'month,basicWeek,basicDay'
             },
-            defaultDate: '2014-11-12',
+            defaultDate: '2023-11-12',
             editable: true,
             events: events,
             isRTL: $('html').attr('dir') == 'rtl' ? true : false
@@ -242,7 +256,7 @@ var FullCalendarStyling = function() {
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2014-11-12',
+            defaultDate: '2023-11-12',
             defaultView: 'agendaWeek',
             editable: true,
             businessHours: true,
@@ -263,7 +277,7 @@ var FullCalendarStyling = function() {
                 listMonth: { buttonText: 'Month' }
             },
             defaultView: 'listMonth',
-            defaultDate: '2014-11-12',
+            defaultDate: '2023-11-12',
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
@@ -278,7 +292,7 @@ var FullCalendarStyling = function() {
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2014-11-12',
+            defaultDate: '2023-11-12',
             editable: true,
             events: eventColors,
             isRTL: $('html').attr('dir') == 'rtl' ? true : false
@@ -291,7 +305,7 @@ var FullCalendarStyling = function() {
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2014-11-12',
+            defaultDate: '2023-11-12',
             editable: true,
             events: eventBackgroundColors,
             isRTL: $('html').attr('dir') == 'rtl' ? true : false
