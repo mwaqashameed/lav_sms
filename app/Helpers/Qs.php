@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\Setting;
 use App\Models\StudentRecord;
 use App\Models\Subject;
+use App\Models\Log;
 use Hashids\Hashids;
 use Illuminate\Support\Facades\Auth;
 
@@ -361,6 +362,48 @@ class Qs
     public static function getDaysOfTheWeek()
     {
         return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    }
+
+    // insert error log into database and file
+    public static function insertLog($e, $priority = 'normal')
+    {
+        //******* insertLog($e, 'critical');
+        $exception = new ExceptionLogger();
+        $exception->logException($e->getFile(), $e);
+
+        Qs::insertError($e->getMessage(), $e->getFile(), $priority);
+        //Qs::sendLogNotification($e->getMessage(), $e->getFile(), $priority);
+    }
+
+    public static function insertError($errorMessage,$errorFile='', $priority='normal', $notify=false){
+        $obj = new Log();
+        $obj->saveDb($errorMessage, $errorFile, $priority);
+
+    }
+
+    public static function sendLogNotification($error, $file, $priority)
+    {
+        if ($priority != 'critical') {
+            return false;
+        }
+
+
+        //Mail::to('waqas0345@gmail.com')->send(new SendLog([$error, $file]));
+
+        // $email_subject = 'Exception in ' . siteName();
+        // $emailBody = '<table><tr><td><h6>Error: <strong>' . $error . '</strong></h6></td></tr><tr><td><h6>File: <strong>' . $file . '</strong></h6></td></tr></table>';
+        
+        // Mail::send(
+        //     array(),
+        //     array(),
+        //     function ($message) use ($emailBody, $email_subject) {
+        //         $message->to(['waqas0345@gmail.com'])
+        //         ->subject($email_subject)
+        //             ->from('admin@' . siteDomain())
+        //             ->setBody($emailBody, 'text/html');
+        //     }
+        // );
+        return true;
     }
 
 }

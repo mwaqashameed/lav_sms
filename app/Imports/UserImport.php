@@ -28,7 +28,6 @@ class UserImport extends ImportHandler implements ImportInterface
         $classArr = MyClass::pluck('id', 'name')->toArray();
         $cnt = 0;
         foreach ($csv as $record) {
-            // Assuming your CSV file has columns like 'name', 'email', 'password', etc.
             $class = trim($record['class']);
             if (isset($classArr[$class])) {
                 $classID =  (int)$classArr[$class];
@@ -52,8 +51,6 @@ class UserImport extends ImportHandler implements ImportInterface
                 ];
                 $id = User::insertGetId($userData);
                 $cnt++;
-
-                // User::where('id',$id)->update(['username'=>date('Y').'-'.$id]);
 
                 $sectionID = (int)Section::where('my_class_id', $classID)->where('name', trim($record['section']))
                     ->value('id');
