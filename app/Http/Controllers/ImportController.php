@@ -19,21 +19,21 @@ class ImportController extends Controller
 
     public function store(Request $request)
     {
-        $test = $request->file('csv_file');
+        // $test = $request->file('csv_file');
 
         $request->validate([
             'csv_file' => 'required|mimes:csv',
         ]);
 
         // $csvFile = $request->file('csv_file');
-        // $storagePath = 'import';
-        // $csvFileName = $csvFile->store($storagePath);
+        // $storagePath = 'uploads/import';
+        // $fileName = time().'.'.$request->csv_file->extension();  
+        // $csvFileName = $csvFile->store(storage_path('app/public/uploads/import/'.$fileName));
         
-        $imageName = time().'.'.$request->csv_file->extension();  
-        $request->csv_file->move(storage_path('app/public/uploads/import/'), $imageName);
-        //Storage::path('uploads/import/' . $uploadedFile)
+        $fileName = time().'.'.$request->csv_file->extension();  
+        $request->csv_file->move(storage_path('app/public/uploads/import/'), $fileName);
         
-        $msg = $this->processImportFile($imageName,$request->type);
+        $msg = $this->processImportFile($fileName,$request->type);
 
         return redirect()->back()->with('success', $msg);
     }

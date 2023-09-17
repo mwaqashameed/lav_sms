@@ -22,7 +22,6 @@ class UserImport extends ImportHandler implements ImportInterface
     public function import()
     {
         $cnt = 0;
-        try {
             $csv = Reader::createFromPath($this->csvFile, 'r');
             $csv->setHeaderOffset(0); // Assuming the first row contains headers
 
@@ -73,6 +72,7 @@ class UserImport extends ImportHandler implements ImportInterface
             $this->setMessage('Total ' . $cnt . ' records added successfully');
             $this->setMessage('Done');
             return true;
+            try {
         } catch (\Exception $e) {
             $this->setMessage('****** Error: ' . $e->getMessage());
             $this->setMessage('Total ' . $cnt . ' records added');
