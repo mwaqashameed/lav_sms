@@ -21,3 +21,17 @@
         </li>
     </ul>
 </li>
+
+{{--Import Data--}}
+<li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['import-data.create', 'import-data.index']) ? 'nav-item-expanded nav-item-open' : '' }} ">
+    <a href="#" class="nav-link"><i class="icon-lock2"></i> <span> Import Data</span></a>
+
+    <ul class="nav nav-group-sub" data-submenu-title="Manage Pins">
+        {{--Generate Pins--}}
+            <li class="nav-item">
+                <a href="{{ route('import-data.index') }}"
+                   class="nav-link {{ (Route::is('import-data.index')) ? 'active' : '' }}">Import Data</a>
+            </li>
+
+    </ul>
+</li>

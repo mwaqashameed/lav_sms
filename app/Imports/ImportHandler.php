@@ -11,12 +11,13 @@ class ImportHandler
 
     public function setMessage($message)
     {
-        $this->message = $this->message . '-'. $message .'<br/>'. PHP_EOL;
+        $this->message = $this->message . '<li>'. $message . '</li>';
     }
 
     public function getMessage()
     {
-        return  $this->message;
+
+        return  '<ul>'.$this->message.'</ul>';
     }
 
     public function getClassTypeIdByName($class){

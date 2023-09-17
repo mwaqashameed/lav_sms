@@ -23,38 +23,45 @@ class PaymentImport extends ImportHandler implements ImportInterface
 
     public function import()
     {
-        $csv = Reader::createFromPath($this->csvFile, 'r');
-        $csv->setHeaderOffset(0); // Assuming the first row contains headers
+        try {
+            $csv = Reader::createFromPath($this->csvFile, 'r');
+            $csv->setHeaderOffset(0); // Assuming the first row contains headers
 
-        $users = [];
-        $classArr = MyClass::pluck('id', 'name')->toArray();
-$cnt = 0;
-        foreach ($csv as $record) {
-            $class = trim($record['class']);
-            if (isset($classArr[$class])) {
-                $classID =  (int)$classArr[$class];
-                if (Payment::where('title', trim($record['title']))->where('my_class_id', $classID)->doesntExist()) {
+            $users = [];
+            $classArr = MyClass::pluck('id', 'name')->toArray();
+            $cnt = 0;
+            foreach ($csv as $record) {
+                $class = trim($record['class']);
+                if (isset($classArr[$class])) {
+                    $classID =  (int)$classArr[$class];
+                    if (Payment::where('title', trim($record['title']))->where('my_class_id', $classID)->doesntExist()) {
 
-                    $userData = [
-                        'title'=> $record['title'],
-                        'amount'=> $record['amount'],
-                        'year' => Qs::getCurrentSession(),
-                        'ref_no' => Pay::genRefCode(),
-                        'my_class_id' => $classID
-                    ];
+                        $userData = [
+                            'title' => $record['title'],
+                            'amount' => $record['amount'],
+                            'year' => Qs::getCurrentSession(),
+                            'ref_no' => Pay::genRefCode(),
+                            'my_class_id' => $classID
+                        ];
 
-                    $id = Payment::insertGetId($userData);
-                    $cnt ++;
+                        $id = Payment::insertGetId($userData);
+                        $cnt++;
+                    } else {
+                        $this->setMessage(trim($record['title']) . ' - Payment already exists');
+                    }
                 } else {
-                   $this->setMessage(trim($record['title']). ' - Payment already exists');
+                    $this->setMessage($class . ' - Class did not found');
                 }
-            } else {
-                    $this->setMessage($class. ' - Class did not found');
             }
-
+            $this->setMessage('Total ' . $cnt . ' records added successfully');
+            $this->setMessage('Done');
+            return true;
+        } catch (\Exception $e) {
+            $this->setMessage('<span style="color:red;">****** Error: ' . $e->getMessage() . '</span>');
+            $this->setMessage('Total ' . $cnt . ' records added');
+            $this->setMessage('Done');
+            Qs::insertLog($e, 'critical');
+            return false;
         }
-        $this->setMessage('Total ' . $cnt . ' records added successfully');
-        $this->setMessage('Done');
-        return true;
     }
 }

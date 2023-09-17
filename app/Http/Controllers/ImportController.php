@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Qs;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,6 +13,48 @@ class ImportController extends Controller
 {
     public function index(Request $request)
     {
+        $data = [];
+        return view('pages.support_team.import.index');
+    }
+
+    public function store(Request $request)
+    {
+        $test = $request->file('csv_file');
+
+        $request->validate([
+            'csv_file' => 'required|mimes:csv',
+        ]);
+
+        // $csvFile = $request->file('csv_file');
+        // $storagePath = 'import';
+        // $csvFileName = $csvFile->store($storagePath);
+        
+        $imageName = time().'.'.$request->csv_file->extension();  
+        $request->csv_file->move(storage_path('app/public/uploads/import/'), $imageName);
+        //Storage::path('uploads/import/' . $uploadedFile)
+        
+        $msg = $this->processImportFile($imageName,$request->type);
+
+        return redirect()->back()->with('success', $msg);
+    }
+
+    private function processImportFile($uploadedFile,$type)
+    {
+        $classTitle = Str::title($type);
+        $className = $classTitle . 'Import';
+        $className = 'App\\Imports\\' . $className;
+        if (class_exists($className)) {
+            $csvFile = Storage::path('uploads/import/' . $uploadedFile);
+            $importObj = new $className($csvFile);
+            $importObj->import();
+            return $importObj->getMessage();
+        } else {
+            Qs::insertError($className . " - Class does not exist.");
+            abort(403, 'invalid request');
+        }
+    }
+
+    private function directRun($request) {
         $classTitle = Str::title($request->type);
         $className = $classTitle . 'Import';
         $className = 'App\\Imports\\' . $className;
@@ -23,6 +66,5 @@ class ImportController extends Controller
         } else {
             echo "Class does not exist.";
         }
-
     }
 }

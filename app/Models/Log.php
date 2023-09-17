@@ -15,7 +15,8 @@ class Log extends Model
                 'error' => $error,
                 'file' => $file, 
                 'priority' => $priority,
-                'url'=> url()->full()
+                'url'=> url()->full(),
+                'created_at'=> date('Y-m-d H:i:s')
             ]
         );
     }
